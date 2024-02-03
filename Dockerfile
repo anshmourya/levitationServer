@@ -10,7 +10,6 @@ RUN npm ci
 COPY . .
 
 # Additional commands
-
 RUN npm run build
 
 CMD ["npm", "run", "dev"]
