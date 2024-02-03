@@ -12,7 +12,9 @@ class ProductController {
         "utf8"
       );
       const invoice = await product.generateBill(templateHtml, req.body);
-      res.download(invoice);
+      res.contentType("application/pdf");
+
+      res.send(invoice);
     } catch (error) {
       console.log(error);
       next(error);

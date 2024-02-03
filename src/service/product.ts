@@ -43,8 +43,6 @@ class Product {
       waitUntil: "networkidle0",
     });
 
-    const dir = "src/public/invoice.pdf";
-
     const bill = await page.pdf({
       format: "a4",
       margin: {
@@ -54,13 +52,12 @@ class Product {
         left: "30px",
       },
       printBackground: true,
-      path: dir,
     });
     console.log(bill);
     await browser.close();
 
     console.log("Done: invoice.pdf is created!");
-    return dir;
+    return bill;
   }
 }
 
