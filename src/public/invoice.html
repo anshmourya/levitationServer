@@ -1,0 +1,125 @@
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Press+Start+2P&display=swap");
+
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+  body {
+    max-width: 1100px;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+
+  .highlight-text {
+    color: blue;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  header img {
+    max-width: 200px;
+  }
+
+  table {
+    margin-top: 70px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  tbody {
+    border-bottom: 1px solid #ddd;
+    padding-top: 10px;
+  }
+
+  table td {
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  /* grand total */
+  #grand-total {
+    display: grid;
+    justify-content: flex-end;
+    margin: 50px 0;
+    gap: 20px;
+  }
+
+  #grand-total div {
+    min-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  #grand-total div:last-child {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+</style>
+
+<header>
+  <div>
+    <h3>INVOICE GENERATOR</h3>
+    <br />
+    this is the sample output
+  </div>
+  <div>
+    <img
+      src="https://levitation.in/wp-content/uploads/2023/04/levitation-Infotech.png"
+      alt="logo"
+    />
+  </div>
+</header>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Rate</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+      <tr>
+        <td>{{item}}</td>
+        <td class="highlight-text">{{quantity}}</td>
+        <td>{{rate}}</td>
+        <td>INR {{total}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <!-- grand total -->
+  <div id="grand-total">
+    <div>
+      <b>Total</b>
+      <span>INR {{total}}</span>
+    </div>
+    <div>
+      <span>GST</span>
+      <span>18%</span>
+    </div>
+    <div>
+      <b>Grand Total</b>
+      <span class="highlight-text">INR {{total}}</span>
+    </div>
+  </div>
+</div>

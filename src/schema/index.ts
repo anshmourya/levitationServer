@@ -27,6 +27,10 @@ const singleItem = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  total: {
+    type: Number,
+    required: true,
+  },
 });
 
 const productSchema = new mongoose.Schema({

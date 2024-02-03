@@ -1,22 +1,24 @@
 import { ProductModel } from "@schema/index.js";
 import { Request, Response, NextFunction } from "express";
-interface product {
-  name: string;
-  quantiy: number;
-  rate: number;
-  total: number;
-}
-
+import product from "service/product.js";
+import fs from "fs";
+import path from "path";
 class ProductController {
-  async generateBill(req: Request, res: Response, next: NextFunction) {
+  async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const bill = await ProductModel.create(req.body);
-      res.status(201).json({
-        status: "success",
-        detail: bill,
-      });
+      await product.add(req.body);
+      const templateHtml = fs.readFileSync(
+        path.join(process.cwd(), "src/public/invoice.html"),
+        "utf8"
+      );
+      const invoice = await product.generateBill(templateHtml, req.body);
+      res.download(invoice);
     } catch (error) {
       next(error);
     }
   }
 }
+
+const productController = new ProductController();
+
+export default productController;
