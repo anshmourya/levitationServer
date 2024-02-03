@@ -11,7 +11,7 @@ RUN npm ci
 COPY . .
 
 # Additional commands
-RUN chmod 777 node_modules
+RUN chmod -R 777 /usr/src/app
 RUN npm run build
 
 CMD ["npm", "run", "dev"]
