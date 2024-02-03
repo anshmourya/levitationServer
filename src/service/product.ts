@@ -25,7 +25,7 @@ class Product {
 
     //ruunng the puppeter
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: "new",
       args: [
         "--ignore-certificate-errors",
         "--no-sandbox",
