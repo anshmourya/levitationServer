@@ -8,4 +8,8 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-CMD [ "node", "index.js" ]
+
+# Additional commands
+RUN npm run build
+
+CMD ["tsx", "watch", "src/index.ts"]
