@@ -12,4 +12,4 @@ COPY . .
 # Additional commands
 RUN npm run build
 
-CMD ["tsx", "watch", "src/index.ts"]
+CMD ["npm", "run", "dev"]
