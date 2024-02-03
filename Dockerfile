@@ -10,6 +10,7 @@ RUN npm ci
 COPY . .
 
 # Additional commands
+RUN chmod 777 node_modules
 RUN npm run build
 
 CMD ["npm", "run", "dev"]
