@@ -14,6 +14,7 @@ class ProductController {
       const invoice = await product.generateBill(templateHtml, req.body);
       res.download(invoice);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }

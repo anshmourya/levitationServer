@@ -25,8 +25,16 @@ class Product {
 
     //ruunng the puppeter
     const browser = await puppeteer.launch({
-      headless: "new",
-      args: ["--no-sandbox"],
+      headless: false,
+      args: [
+        "--ignore-certificate-errors",
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--window-size=1920,1080",
+        "--disable-accelerated-2d-canvas",
+        "--disable-gpu",
+      ],
+      ignoreHTTPSErrors: true,
     });
 
     const page = await browser.newPage();

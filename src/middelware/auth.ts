@@ -4,7 +4,7 @@ import { token } from "service/service.js";
 const auth = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const authHeader = req.headers.authorization;
-
+    console.log(authHeader);
     if (!authHeader) {
       return res.status(401).json({
         status: "Token is not present.",
