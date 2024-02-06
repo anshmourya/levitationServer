@@ -34,8 +34,7 @@ class Jwt {
 class UserService extends Jwt {
   async create(newUser: userprop) {
     try {
-      const salt = await bcrypt.genSalt(10);
-      newUser.password = await bcrypt.hash(newUser.password, salt);
+      newUser.password = await bcrypt.hash(newUser.password, 10);
       await UserModel.create(newUser);
       return true;
     } catch (error) {
@@ -46,11 +45,18 @@ class UserService extends Jwt {
   async session(signinUser: userprop) {
     try {
       const existUser = await UserModel.findOne({ email: signinUser.email });
+
       if (!existUser) {
-        throw new Error("user not exist.");
+        throw new Error("User does not exist.");
       }
-      if (!bcrypt.compare(signinUser.password, existUser.password)) {
-        throw new Error("password is incorrect.");
+
+      const isPasswordCorrect = await bcrypt.compare(
+        signinUser.password,
+        existUser.password
+      );
+
+      if (!isPasswordCorrect) {
+        throw new Error("Incorrect password.");
       }
 
       return this.createToken({ email: signinUser.email });
