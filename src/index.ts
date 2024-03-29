@@ -17,9 +17,6 @@ app.use(router);
 app.use(error);
 app.set("trust proxy", 1);
 
-app.get("/", async (req, res) => {
-  res.send("ok");
-});
 const keepServerAlive = async () => {
   try {
     const response = await axios.get(process.env.SERVER_URL);
@@ -31,6 +28,7 @@ const keepServerAlive = async () => {
 
 // Set interval to make a request every 10 minutes (600,000 milliseconds)
 setInterval(keepServerAlive, 600000);
+
 database()
   .then(() => {
     app.listen(port, () =>

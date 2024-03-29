@@ -38,6 +38,7 @@ class UserService extends Jwt {
       await UserModel.create(newUser);
       return true;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }
@@ -61,6 +62,7 @@ class UserService extends Jwt {
 
       return this.createToken({ email: signinUser.email });
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }

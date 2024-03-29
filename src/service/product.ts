@@ -1,8 +1,7 @@
 import { ProductModel } from "@schema/index.js";
 import puppeteer from "puppeteer";
 import Handlebars from "handlebars";
-import path from "path";
-interface productprops {
+interface Productprops {
   products: {
     item: string;
     quantiy: number;
@@ -11,10 +10,11 @@ interface productprops {
   total: number;
 }
 class Product {
-  async add(items: productprops) {
+  async add(items: Productprops) {
     try {
       return await ProductModel.insertMany(items);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }
